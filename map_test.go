@@ -24,20 +24,41 @@ func sliceStringEqual(s1, s2 []string) bool {
 }
 
 func TestNewMap(t *testing.T) {
+	type args struct {
+		store map[string]string
+	}
+
 	tests := []struct {
 		name string
+		args args
 		want Env
 	}{
 		{
 			name: "new",
+			args: args{
+				store: nil,
+			},
 			want: &MapEnv{
 				store: map[string]string{},
+			},
+		},
+		{
+			name: "default_set",
+			args: args{
+				store: map[string]string{
+					"foo": "bar",
+				},
+			},
+			want: &MapEnv{
+				store: map[string]string{
+					"foo": "bar",
+				},
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewMap(); !reflect.DeepEqual(got, tt.want) {
+			if got := NewMap(tt.args.store); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("NewMap() = %v, want %v", got, tt.want)
 			}
 		})

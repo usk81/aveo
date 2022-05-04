@@ -11,9 +11,12 @@ type MapEnv struct {
 	store map[string]string
 }
 
-func NewMap() Env {
+func NewMap(store map[string]string) Env {
+	if store == nil {
+		store = make(map[string]string)
+	}
 	return &MapEnv{
-		store: make(map[string]string),
+		store: store,
 	}
 }
 
