@@ -2,7 +2,7 @@ package aveo
 
 import "errors"
 
-const (
+var (
 	ErrInvalidEnvvarName  = errors.New("invalid environment variable name")
 	ErrInvalidMapItem     = errors.New("invalid map item")
 	ErrLookuperNil        = errors.New("lookuper cannot be nil")
